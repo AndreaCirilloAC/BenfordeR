@@ -1,9 +1,5 @@
 
-# This is the user-interface definition of a Shiny web application.
-# You can find out more about building applications with Shiny here:
-#
-# http://shiny.rstudio.com
-#
+#### BENFORDER USER INTERFACE ####
 
 library(shiny)
 
@@ -37,25 +33,27 @@ shinyUI(fluidPage(
                     and a detail of records having those digits as leading digits"),
                  br(),
                  h6("find out more on the Benford's Law and this app on"),
-                 br()
-                 HTML("<a href='https://andreacirilloblog.wordpress.com/' style='color:    #55ACEE'
-        target='_blank'>[andreacirillo's blog]</a>"),
-                
-                
-                 fileInput("records", h4("load file"),
-                           multiple = FALSE),
                  
+                 HTML("<a href='https://andreacirilloblog.wordpress.com/' style='color:    #55ACEE'
+        target='_blank'>[andreacirillo's blog]</a>"),                
+                br(),
+        #file input widget to let user load his own data set
+        
+                 fileInput("records", h4("load file"),
+                           multiple = FALSE),                 
                  h5("At the moment BenfordeR supports only one-column .csv 
                     dataset. thanks for understanding :)", style = "color:#DC143C"),
                  numericInput("digits",h4("number of digits to test"),1)
     ),
-    
-    # Show a plot of the generated distribution
+        
     mainPanel(
+      #multi panel plot with results from the benford analysis.
       h3("benford analysis results"),
       plotOutput("benford_plot",width= "100%"),
+      # first free digits from the analysis, ordere by absolute difference
       h3("leading digits with greater absolute differences ( first 3)"),
       dataTableOutput("benford_table"),
+      # records associated to the above-mentioned digits
       h3("records with leading digits not complying with Benford's Law"),
       dataTableOutput("benford_suspect")
       
