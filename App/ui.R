@@ -36,20 +36,27 @@ shinyUI(fluidPage(
                     a detail of first digits more far from the law
                     and a detail of records having those digits as leading digits"),
                  br(),
-                 p("find out more on the Benford's Law and this app on"),
+                 h6("find out more on the Benford's Law and this app on"),
+                 br()
                  HTML("<a href='https://andreacirilloblog.wordpress.com/' style='color:    #55ACEE'
         target='_blank'>[andreacirillo's blog]</a>"),
                 
                 
                  fileInput("records", h4("load file"),
                            multiple = FALSE),
+                 
+                 h5("At the moment BenfordeR supports only one-column .csv 
+                    dataset. thanks for understanding :)", style = "color:#DC143C"),
                  numericInput("digits",h4("number of digits to test"),1)
     ),
     
     # Show a plot of the generated distribution
     mainPanel(
+      h3("benford analysis results"),
       plotOutput("benford_plot",width= "100%"),
+      h3("leading digits with greater absolute differences ( first 3)"),
       dataTableOutput("benford_table"),
+      h3("records with leading digits not complying with Benford's Law"),
       dataTableOutput("benford_suspect")
       
       

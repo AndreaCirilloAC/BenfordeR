@@ -18,11 +18,14 @@ shinyServer(function(input, output) {
     
     plot(benford_obj())
   })
-  output$benford_table   <- renderDataTable({suspectsTable(benford_obj())})
+  output$benford_table   <- renderDataTable({
+    suspects <- suspectsTable(benford_obj())
+    suspects <- suspects[1:3,]})
   output$benford_suspect <- renderDataTable({
     digits                   <-left(data(),input$digits)
     data_output              <- data.frame(data(),digits)
     suspects                 <- suspectsTable(benford_obj())
+    suspects                 <- suspects[1:3,]
     suspects_digits          <- (as.character(suspects$digits))
     data_suspected           <- subset(data_output,as.character(data_output[,2])
                                        %in% suspects_digits)
