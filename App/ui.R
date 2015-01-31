@@ -27,7 +27,20 @@ shinyUI(fluidPage(
   sidebarLayout(
     sidebarPanel(width=3,
                  h3("instructions"),
-                 p ("here come the instructions"),
+                 
+                 p ("BenfordeR is a lean shiny app that let's you test Benford's Law against a custom
+                    population you can load using the 'load file' control below."),
+                 p ("Moreover, Benforder lets' you decide how many leading digits you want to test 
+                    in your popoulation, changing the output accordingly"),
+                 p ("BenfordeR gives as an output a grapghic representation of the compliance to the law,
+                    a detail of first digits more far from the law
+                    and a detail of records having those digits as leading digits"),
+                 br(),
+                 p("find out more on the Benford's Law and this app on"),
+                 HTML("<a href='https://andreacirilloblog.wordpress.com/' style='color:    #55ACEE'
+        target='_blank'>[andreacirillo's blog]</a>"),
+                
+                
                  fileInput("records", h4("load file"),
                            multiple = FALSE),
                  numericInput("digits",h4("number of digits to test"),1)
