@@ -4,7 +4,7 @@ library(benford.analysis)
 left = function (string,char){
   substr(string,1,char)}
 data(corporate.payment)
-
+###### Server ####
 server <- function(input, output) {
   
   data                   <- reactive({if (is.null(input$records$name)){
@@ -17,18 +17,20 @@ server <- function(input, output) {
     
     plot(benford_obj())
   })
+  output$benford_table   <- renderDataTable({suspectsTable(benford_obj())})
   output$benford_suspect <- renderDataTable({
     digits                   <-left(data(),input$digits)
     data_output              <- data.frame(data(),digits)
     suspects                 <- suspectsTable(benford_obj())
-    suspects_digits          <- as.character(suspects[,1])
+    suspects_digits          <- (as.character(suspects$digits))
     data_suspected           <- subset(data_output,as.character(data_output[,2])
-                                       %in% suspects_digits)
+                                    %in% suspects_digits)
   }) 
   
 }
 
 library(shiny)
+###### UI ####
 
 ui <- shinyUI(fluidPage(
   
@@ -59,7 +61,9 @@ ui <- shinyUI(fluidPage(
     # Show a plot of the generated distribution
     mainPanel(
       plotOutput("benford_plot",width= "100%"),
+      dataTableOutput("benford_table"),
       dataTableOutput("benford_suspect")
+      
       
     )
   )
