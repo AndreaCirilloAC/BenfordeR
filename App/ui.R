@@ -34,7 +34,7 @@ shinyUI(fluidPage(
                  br(),
                  h6("find out more on the Benford's Law and this app on"),
                  
-                 HTML("<a href='https://andreacirilloblog.wordpress.com/' style='color:    #55ACEE'
+                 HTML("<a href='https://andreacirilloblog.wordpress.com/?p=397' style='color:    #55ACEE'
         target='_blank'>[andreacirillo's blog]</a>"),                
                 br(),
         #file input widget to let user load his own data set
